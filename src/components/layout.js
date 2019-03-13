@@ -25,7 +25,7 @@ const Layout = ({ children }) => (
     `}
     render={data => (
       <>
-        <Header siteTitle={data.site.siteMetadata.title} />
+        <Header siteTitle="Chris Guo" />
         <div
           style={{
             margin: `0 auto`,
@@ -35,10 +35,12 @@ const Layout = ({ children }) => (
           }}
         >
           <main>{children}</main>
-          <footer>
-            © {new Date().getFullYear()}, Built with
-            {` `}
-            <a href="https://www.gatsbyjs.org">Gatsby</a>
+          <footer
+            style={{
+              paddingTop: 10,
+            }}
+          >
+            © {new Date().getFullYear()}, Chris Guo. I made this website using Gatsby (site generator for React) because why not.
           </footer>
         </div>
       </>
