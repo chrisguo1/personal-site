@@ -1,3 +1,7 @@
 # personal-site
-Personal Site (with Netlify)
+Personal Site.
+
+Hosted using Netlify.
+
+Created using Gatsby/React.
 
