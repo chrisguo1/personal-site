@@ -1,7 +1,9 @@
 # personal-site
 Personal Site.
 
-Hosted using Netlify.
+Hosted using Netlify for https.
 
-Created using Gatsby/React.
+Created using React so I could get comfortable with the framework.
+
+Site generated using Gatsby because it's fast. 
 

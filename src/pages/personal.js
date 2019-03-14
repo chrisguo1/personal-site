@@ -59,7 +59,7 @@ const PersonalPage = () => (
 
     <Link to="/">Homepage</Link>
     <div><Link to="/writing/">Writing</Link></div>
-    <div><Link to="/essays/">Essays</Link></div>
+    <div><Link to="/projects/">Projects</Link></div>
     <div><Link to="/books/">Books</Link></div>
   </Layout>
 )
