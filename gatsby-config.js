@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
     title: `Chris Guo`,
-    description: `Chris Guo's Personal Website`,
-    author: `Chris Guo`,
+    description: `A list of Chris Guo's thoughts and accomplishments.`,
+    author: `@chrisguo`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -29,6 +29,6 @@ module.exports = {
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // 'gatsby-plugin-offline',
+    // `gatsby-plugin-offline`,
   ],
 }

@@ -8,9 +8,12 @@ const PersonalPage = () => (
   <Layout>
     <SEO title="Personal" />
     <h1>Personal</h1>
-    
-    <p>On this page I list stuff I have done that nobody else probably cares about.</p>
-    
+
+    <p>
+      Here I list stuff I've done. I use this to keep track of my
+      accomplishments and plan goals not related to work.
+    </p>
+
     <h2>Swimming PRs</h2>
     <ul>
       <li>100 SCY Breast: 56.41</li>
@@ -22,46 +25,50 @@ const PersonalPage = () => (
       <li>200 SCY Free: 1:42.58</li>
       <li>500 SCY Free: 4:40.30</li>
     </ul>
-    <div style={{paddingBottom: 30,}}>
-      <a href="https://www.collegeswimming.com/swimmer/241059/">More Best Times</a>
+    <div style={{ paddingBottom: 30 }}>
+      <a href="https://www.collegeswimming.com/swimmer/241059/">
+        More Best Times
+      </a>
     </div>
-    
+
     <h2>Running PRs </h2>
     <ul>
       <li>Half-Marathon: May 19, 2019</li>
       <li>Life Goal: Qualify for Boston Marathon</li>
     </ul>
-    
+
     <h2>Lifting PRs</h2>
     <ul>
       <li>Deadlift (Conventional, Overhand Grip): 3-reps 265 lb</li>
       <li>Bench Press: 5 reps 175 lb</li>
       <li>Back Squat: 4-reps 245 lb</li>
-      <li>Overhead Press: 10-reps 95 lb</li>
+      <li>Front Squat: 265 lb</li>
+      <li>Clean: 80kg</li>
     </ul>
-
-    <h2>Countries Visited</h2>
-    <ul>
-      <li>United States</li>
-      <li>China</li>
-     </ul>
-     <p>There's more, but I'm too lazy to add. Change this to a table not list format.</p>
 
     <h2>Languages</h2>
     <ul>
-      <li><b>English</b>: Native.</li>
-      <li><b>Mandarin</b>: Conversational Fluency. 
-          I can read at the 4th grade level. 
-          I can write at the 3rd grade level.
+      <li>
+        <b>English</b>: Native.
       </li>
-      <li><b>Spanish</b>: AP Spanish level. I can conjugate verbs in the present and sometimes preterite tense.</li>
+      <li>
+        <b>Mandarin</b>: Conversational Fluency.
+      </li>
+      <li>
+        <b>Spanish</b>: AP Spanish level?
+      </li>
     </ul>
-
-    <Link to="/">Homepage</Link>
-    <div><Link to="/writing/">Writing</Link></div>
-    <div><Link to="/projects/">Projects</Link></div>
-    <div><Link to="/books/">Books</Link></div>
   </Layout>
 )
 
 export default PersonalPage
+
+/* <h2>Countries Visited</h2>
+<ul>
+  <li>United States</li>
+  <li>China</li>
+</ul>
+<p>
+  There's more. I'll add later. Change this to a table not list
+  format.
+</p> */
