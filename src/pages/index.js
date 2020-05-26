@@ -9,8 +9,8 @@ const IndexPage = () => (
   <Layout>
     <SEO title="Home" keywords={[`chris`, `guo`, `website`]} />
     <p>
-      I am <span class="highlight">Quantitative Trading Analyst</span> living
-      Chicago. I work at the aptly named{" "}
+      I am a <span class="highlight">Quantitative Trading Analyst</span> living
+      in Chicago. I work at the aptly named{" "}
       <span class="highlight"> Chicago Trading Company</span> where I'm part of
       the options market making execution team. To improve trading results, I
       use Python to create data visualizations, which help me analyze trading
@@ -24,7 +24,7 @@ const IndexPage = () => (
     <p>
       My current interests: quantitative finance, markets, machine learning, and
       mechanism design. I also like writing essays, driving across the US to
-      stay in middle-of-nowhere AirBnBs, watching Olympic Weightlifting YouTube
+      stay in middle-of-nowhere AirBnbs, watching Olympic Weightlifting YouTube
       videos, learning Go (the game), and drinking light roast black coffee.
     </p>
     <p>
