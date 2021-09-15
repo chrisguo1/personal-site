@@ -4,11 +4,7 @@ import React from "react"
 import "./header.css"
 
 const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      marginBottom: `1.45rem`,
-    }}
-  >
+  <header>
     <div
       style={{
         margin: `0 auto`,
@@ -18,47 +14,13 @@ const Header = ({ siteTitle }) => (
     >
       <div class="header-bar">
         <div class="header-logo">
-          <Link
-            to="/"
-            style={{
-              color: `black`,
-              textDecoration: `none`,
-            }}
-          >
+          <Link class="nav-link" activeClassName="active" to="/">
             Chris Guo
           </Link>
         </div>
         <div class="nav-menu">
           <div class="nav-item">
-            <Link
-              to="/writing"
-              style={{
-                color: `black`,
-                textDecoration: `none`,
-              }}
-            >
-              Writing
-            </Link>
-          </div>
-          <div class="nav-item">
-            <Link
-              to="/books"
-              style={{
-                color: `black`,
-                textDecoration: `none`,
-              }}
-            >
-              Books
-            </Link>
-          </div>
-          <div class="nav-item">
-            <Link
-              to="/personal"
-              style={{
-                color: `black`,
-                textDecoration: `none`,
-              }}
-            >
+            <Link class="nav-link" activeClassName="active" to="/personal">
               Personal
             </Link>
           </div>

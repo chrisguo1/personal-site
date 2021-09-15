@@ -13,21 +13,43 @@
 .nav-menu {
   margin: 15px 0px;
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  flex-flow: row wrap;
+  justify-content: flex-end;
   align-items: center;
-  flex-basis: 30%;
-  justify-content: space-between;
+  gap: 20px;
 }
 
 .header-logo {
-  font-size: 1.65em;
-  font-weight: 700;
+  font-size: xx-large;
+  font-weight: bolder;
 }
 
 .nav-item {
-  font-weight: 600;
+  text-decoration: none;
+  font-size: large;
+  font-weight: bold;
 }
+
+.nav-link:link, .nav-link:visited {
+  text-decoration: none;
+  color: black;
+}
+
+.nav-link:hover, .nav-link:active {
+  color: red;
+}
+
+.active {
+  text-decoration: none;
+  color: purple;
+}
+
+/* 
+a:link - a normal, unvisited link
+a:visited - a link the user has visited
+a:hover - a link when the user mouses over it
+a:active - a link the moment it is clicked */
+
 
 @media only screen and (max-width: 800px) {
   .header-bar {
