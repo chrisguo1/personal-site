@@ -17,7 +17,7 @@ const ProjectsPage = () => (
       </p>
       <ul>
         <li>
-          <a href="http://www.sproutnu.com" target="_blank">
+          <a href="http://www.sproutnu.com" target="_blank" rel="noreferrer">
             Sprout Website
           </a>
         </li>
@@ -25,6 +25,7 @@ const ProjectsPage = () => (
           <a
             href="https://medium.com/@chris.guo/the-best-way-to-inspire-college-students-interested-in-tech-and-startups-7f97b3dbe4b0"
             target="_blank"
+            rel="noreferrer"
           >
             2018 Trip Recap
           </a>
@@ -33,6 +34,7 @@ const ProjectsPage = () => (
           <a
             href="https://medium.com/epicnorthwestern/takeaways-from-sprout-2017-aadeffdcdad8"
             target="_blank"
+            rel="noreferrer"
           >
             Takeaways from 2017 Trip
           </a>
@@ -41,6 +43,7 @@ const ProjectsPage = () => (
           <a
             href="https://www.farley.northwestern.edu/what-we-are-up-to/news/articles/2018/student-entrep-groupbuds-during-sprout-san-francisco-trip.html"
             target="_blank"
+            rel="noreferrer"
           >
             NU Farley Center Blog
           </a>

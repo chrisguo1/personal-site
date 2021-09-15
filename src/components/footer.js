@@ -1,11 +1,12 @@
-import { Link } from "gatsby"
-//import PropTypes from "prop-types"
 import React from "react"
 import "./footer.css"
 
 const Footer = () => (
   <footer>
-    I built this website using Gatsby and React. It's hosted on Netlify (free!).
+    <p>
+      If you're curious, I built this website using Gatsby and React! Want to
+      connect? My email is christopheryguo [at] gmail [dot] com.
+    </p>
   </footer>
 )
 export default Footer
