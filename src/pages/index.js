@@ -29,7 +29,7 @@ const IndexPage = () => (
         <li>Kafka (KSQLDB)</li>
         <li>Databases (SQL, Snowflake)</li>
         <li>
-          Data Enginering (getting data from one place to another in a usable
+          Data Engineering (getting data from one place to another in a usable
           format, DAGs, PySpark){" "}
         </li>
         <li>Data Science (Numpy, Pandas, Sklearn)</li>
