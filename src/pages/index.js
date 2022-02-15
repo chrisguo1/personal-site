@@ -26,8 +26,8 @@ const IndexPage = () => (
       <h3>Things I have experience with:</h3>
       <ul>
         <li>Python (scripting and writing libraries)</li>
-        <li>Kafka (KSQLDB)</li>
-        <li>Databases (SQL, Snowflake)</li>
+        <li>Kafka and Stream Processing (Scaling production and consumption, KSQLDB, PySpark Structured Streaming, Faust)</li>
+        <li>Databases (SQL, Snowflake, Postgres, Redis, Mongo)</li>
         <li>
           Data Engineering (getting data from one place to another in a usable
           format, DAGs, PySpark){" "}
@@ -35,7 +35,7 @@ const IndexPage = () => (
         <li>Data Science (Numpy, Pandas, Sklearn)</li>
         <li>
           Visualization and Building Dashboards (Jupyter, Matplotlib, Seaborn,
-          Panel, Bokeh)
+          Panel, Bokeh, Dash)
         </li>
       </ul>
     </Section>
