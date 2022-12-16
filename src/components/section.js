@@ -1,12 +1,12 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from "react";
+import PropTypes from "prop-types";
 
-import "./section.css"
+import "./section.css";
 
-const Section = ({ children }) => <section>{children}</section>
+const Section = ({ children }) => <section class="pb-4">{children}</section>;
 
 Section.propTypes = {
-  children: PropTypes.node.isRequired,
-}
+    children: PropTypes.node.isRequired,
+};
 
-export default Section
+export default Section;
