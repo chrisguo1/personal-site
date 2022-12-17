@@ -25,7 +25,7 @@ const Layout = ({ children }) => {
     `);
 
     return (
-        <div class="container max-w-4xl py-5 font-serif">
+        <div class="container max-w-4xl">
             <Header siteTitle={data.site.siteMetadata.title} />
             <main>{children}</main>
             <Footer />

@@ -1,1 +1,1 @@
-Personal Site built using Gatsby and React. Hosted by Netlify.
+Chris Guo's personal site.

@@ -4,6 +4,10 @@
 
 
 @layer base {
+    body {
+      /* dark mode */
+      @apply dark:bg-slate-800 text-white
+    }
     h1 {
       @apply text-3xl;
     }
@@ -11,3 +15,7 @@
       @apply text-2xl;
     }
   }
+
+html {
+  padding: 3rem;
+}
