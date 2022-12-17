@@ -5,7 +5,9 @@ import "./header.css";
 
 const Header = ({ siteTitle }) => (
     <header class="pb-6">
-        <h1>Chris Guo</h1>
+        <Link to={`/`}>
+            <div class="text-4xl">{siteTitle}</div>
+        </Link>
     </header>
 );
 

@@ -6,16 +6,31 @@
 @layer base {
     body {
       /* dark mode */
-      @apply dark:bg-slate-800 text-white
+      @apply dark:bg-slate-800 text-white py-12 px-6
     }
     h1 {
-      @apply text-3xl;
+      @apply text-3xl pb-2;
     }
     h2 {
-      @apply text-2xl;
+      @apply text-2xl pb-1;
+    }
+    h3 {
+      @apply text-xl pb-0.5;
+    }
+    ul {
+      @apply list-disc mx-6;
+    }
+    .higlight-link {
+      @apply underline decoration-green-400 hover:decoration-sky-400;
+    }
+    code {
+      @apply bg-slate-500 px-1;
+    }
+    .highlight{
+      @apply text-green-400;
+    }
+    p {
+      @apply py-2;
     }
   }
 
-html {
-  padding: 3rem;
-}

@@ -1,0 +1,8 @@
+---
+title: Notion
+slug: notion
+tag: notion
+---
+
+
+TODO: use notion as CMS instead of using Markdown from filesystem.
