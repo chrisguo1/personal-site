@@ -9,12 +9,13 @@ const BlogItem = ({slug, title}) => {
 const Blog = () => {
     const articles = useStaticQuery(graphql`
     {
-        allMarkdownRemark {
+        allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
         nodes {
             frontmatter {
                 title
                 tag
                 slug
+                date
             }
             html
             }
@@ -27,6 +28,7 @@ const Blog = () => {
         key={index}
         slug={item.frontmatter.slug}
         title={item.frontmatter.title}
+        date ={item.frontmatter.date}
         /></li>
     ))
     return (

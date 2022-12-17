@@ -1,0 +1,8 @@
+---
+title: Notion
+slug: notion
+tag: notion
+date: 12-17-2022
+---
+
+TODO: Use Notion as CMS for these blogs instead of writing in Markdown and saving to filesystem.
