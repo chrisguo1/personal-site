@@ -2,19 +2,19 @@ import React from 'react';
 import { graphql, useStaticQuery, Link } from 'gatsby';
 
 const BlogItem = ({slug, title}) => {
-    return <Link class='higlight-link' to={`/${slug}`}>{title}</Link>;
+    return <Link class='higlight-link' to={`/blog/${slug}`}>{title}</Link>;
 }
 
 
 const Blog = () => {
     const articles = useStaticQuery(graphql`
     {
-        allMarkdownRemark {
+        allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
         nodes {
             frontmatter {
                 title
-                tag
                 slug
+                date
             }
             html
             }
@@ -27,6 +27,7 @@ const Blog = () => {
         key={index}
         slug={item.frontmatter.slug}
         title={item.frontmatter.title}
+        date ={item.frontmatter.date}
         /></li>
     ))
     return (

@@ -3,7 +3,6 @@ import React from "react";
 import Layout from "../components/layout";
 import Section from "../components/section";
 import Seo from "../components/seo";
-import Ticker from "../components/ticker";
 import Blog from "../components/blog";
 
 const IndexPage = () => (
