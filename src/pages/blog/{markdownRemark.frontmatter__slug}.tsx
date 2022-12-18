@@ -12,13 +12,13 @@ export default function BlogPostTemplate({
   return (
     <Layout>
         <Seo title="Blog" keywords={[`Chris`, `Guo`]} />
-      <div>
-        <h1>{frontmatter.title}</h1>
-        <h3>{frontmatter.date}</h3>
-        <div
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
-      </div>
+        <div className="w-4/5 mx-auto mt-9 article">
+        <section className="py-10">
+            <h1 className="py-4 capitalize">{frontmatter.title}</h1>
+            <h3>{frontmatter.date}</h3>
+            <div dangerouslySetInnerHTML={{ __html: html }}></div>
+        </section>
+    </div>
     </Layout>
   )
 }
