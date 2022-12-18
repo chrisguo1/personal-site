@@ -7,6 +7,7 @@ I like typing in lists.
 
 - Gatsby - React-based front-end framework
     - Using gatsby-transformer-remark plugin to parse Markdown (I'm writing this blog in a Markdown file in VSCode) from the filesystem and convert it to HTML.
+- Typescript - Javascript superset with typing
 - Tailwind - CSS framework
     - Started with base tailwind styles and added on top like the link coloring.
 - Github/Netlify - for code repo and deployment respectively
