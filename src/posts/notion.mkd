@@ -1,7 +1,6 @@
 ---
 title: Notion
 slug: notion
-tag: notion
 date: 12-17-2022
 ---
 

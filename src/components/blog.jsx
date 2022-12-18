@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql, useStaticQuery, Link } from 'gatsby';
 
 const BlogItem = ({slug, title}) => {
-    return <Link class='higlight-link' to={`/${slug}`}>{title}</Link>;
+    return <Link class='higlight-link' to={`/blog/${slug}`}>{title}</Link>;
 }
 
 
@@ -13,7 +13,6 @@ const Blog = () => {
         nodes {
             frontmatter {
                 title
-                tag
                 slug
                 date
             }
