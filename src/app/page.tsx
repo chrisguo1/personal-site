@@ -14,7 +14,8 @@ function formatDate(dateStr: string): string {
 }
 
 export default async function HomePage() {
-  const posts = await getPublishedPosts();
+  const allPosts = await getPublishedPosts();
+  const posts = allPosts.filter((p) => !p.isPrivate);
 
   return (
     <div className="prose">
