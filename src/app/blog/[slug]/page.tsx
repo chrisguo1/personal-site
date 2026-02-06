@@ -55,6 +55,7 @@ export default async function BlogPost({
         </p>
         <h1 style={{ marginBottom: '0.25rem' }}>{post.title}</h1>
         <time
+          dateTime={post.date}
           className="text-sm"
           style={{ color: 'var(--color-text-muted)' }}
         >

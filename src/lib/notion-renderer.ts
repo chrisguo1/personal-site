@@ -106,9 +106,12 @@ async function renderBlock(block: BlockObjectResponse): Promise<string> {
       const url = imgData.type === 'file' ? imgData.file?.url : imgData.external?.url;
       if (!url) return '';
       const caption = imgData.caption?.length ? renderRichText(imgData.caption) : '';
+      const altText = imgData.caption?.length
+        ? imgData.caption.map((t) => t.plain_text).join('')
+        : '';
       return caption
-        ? `<figure><img src="${escapeHtml(url)}" alt="" loading="lazy"><figcaption>${caption}</figcaption></figure>`
-        : `<img src="${escapeHtml(url)}" alt="" loading="lazy">`;
+        ? `<figure><img src="${escapeHtml(url)}" alt="${escapeHtml(altText)}" loading="lazy"><figcaption>${caption}</figcaption></figure>`
+        : `<img src="${escapeHtml(url)}" alt="${escapeHtml(altText)}" loading="lazy">`;
     }
 
     case 'video': {
@@ -123,7 +126,7 @@ async function renderBlock(block: BlockObjectResponse): Promise<string> {
         const videoId = url.includes('youtu.be')
           ? url.split('/').pop()
           : new URL(url).searchParams.get('v');
-        return `<iframe src="https://www.youtube.com/embed/${escapeHtml(videoId || '')}" frameborder="0" allowfullscreen style="width:100%;aspect-ratio:16/9"></iframe>`;
+        return `<iframe src="https://www.youtube.com/embed/${escapeHtml(videoId || '')}" title="YouTube video" allowfullscreen style="width:100%;aspect-ratio:16/9;border:0"></iframe>`;
       }
       return `<video src="${escapeHtml(url)}" controls style="max-width:100%"></video>`;
     }
@@ -144,9 +147,10 @@ async function renderBlock(block: BlockObjectResponse): Promise<string> {
         if (row.type !== 'table_row') return;
         const rowData = (row as AnyBlock).table_row as { cells: RichTextItemResponse[][] };
         const tag = (i === 0 && tableData.has_column_header) ? 'th' : 'td';
+        const scope = tag === 'th' ? ' scope="col"' : '';
         html += '<tr>';
         for (const cell of rowData.cells) {
-          html += `<${tag}>${renderRichText(cell)}</${tag}>`;
+          html += `<${tag}${scope}>${renderRichText(cell)}</${tag}>`;
         }
         html += '</tr>';
       });
@@ -158,13 +162,13 @@ async function renderBlock(block: BlockObjectResponse): Promise<string> {
       const todoData = b.to_do as { rich_text: RichTextItemResponse[]; checked: boolean };
       const checked = todoData.checked;
       const cls = checked ? 'todo-item todo-checked' : 'todo-item';
-      const indicator = checked ? '&#9745;' : '&#9744;';
-      return `<div class="${cls}">${indicator} ${renderRichText(todoData.rich_text)}</div>`;
+      const label = todoData.rich_text.map((t) => t.plain_text).join('');
+      return `<div class="${cls}"><input type="checkbox" disabled${checked ? ' checked' : ''} aria-label="${escapeHtml(label)}"> ${renderRichText(todoData.rich_text)}</div>`;
     }
 
     case 'embed': {
       const embedData = b.embed as { url: string };
-      return `<iframe src="${escapeHtml(embedData.url)}" frameborder="0" style="width:100%;min-height:400px"></iframe>`;
+      return `<iframe src="${escapeHtml(embedData.url)}" title="Embedded content" style="width:100%;min-height:400px;border:0"></iframe>`;
     }
 
     default:

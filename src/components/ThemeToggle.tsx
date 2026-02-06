@@ -19,8 +19,9 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggle}
-      aria-label="Toggle dark mode"
-      className="relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+      aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
+      aria-pressed={dark}
+      className="relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:ring-2 focus:ring-blue-500 focus-visible:ring-2 focus-visible:ring-blue-500"
       style={{ backgroundColor: dark ? '#4b5563' : '#d1d5db' }}
     >
       <span

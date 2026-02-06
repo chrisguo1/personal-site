@@ -11,7 +11,7 @@ export default function Header() {
       >
         Chris Guo
       </Link>
-      <nav className="flex items-center gap-6">
+      <nav aria-label="Main navigation" className="flex items-center gap-6">
         <Link
           href="/#writing"
           className="text-sm no-underline hover:underline"
