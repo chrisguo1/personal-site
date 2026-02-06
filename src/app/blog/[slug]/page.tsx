@@ -19,7 +19,14 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = await getPostBySlug(slug);
   if (!post) return { title: 'Not Found' };
-  return { title: post.title };
+  return {
+    title: post.title,
+    description: post.description || undefined,
+    openGraph: {
+      title: post.title,
+      description: post.description || undefined,
+    },
+  };
 }
 
 function formatDate(dateStr: string): string {
@@ -54,13 +61,31 @@ export default async function BlogPost({
           </Link>
         </p>
         <h1 style={{ marginBottom: '0.25rem' }}>{post.title}</h1>
-        <time
-          dateTime={post.date}
-          className="text-sm"
-          style={{ color: 'var(--color-text-muted)' }}
-        >
-          {formatDate(post.date)}
-        </time>
+        <div className="flex flex-wrap items-center gap-x-3 text-sm" style={{ color: 'var(--color-text-muted)' }}>
+          <time dateTime={post.date}>{formatDate(post.date)}</time>
+          {post.author && (
+            <>
+              <span aria-hidden="true">&middot;</span>
+              <span>{post.author}</span>
+            </>
+          )}
+        </div>
+        {post.tags.length > 0 && (
+          <div className="flex flex-wrap gap-2 mt-3">
+            {post.tags.map((tag) => (
+              <span
+                key={tag}
+                className="text-xs px-2 py-0.5 rounded-full"
+                style={{
+                  backgroundColor: 'var(--color-code-bg)',
+                  color: 'var(--color-text-muted)',
+                }}
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
       </header>
 
       {post.isPrivate ? (

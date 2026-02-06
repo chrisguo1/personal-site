@@ -16,5 +16,8 @@ out/
 # Vercel
 .vercel/
 
+# TypeScript
+*.tsbuildinfo
+
 # Logs
 *.log

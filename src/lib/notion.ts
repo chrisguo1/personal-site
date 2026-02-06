@@ -13,6 +13,9 @@ export interface PostMeta {
   slug: string;
   date: string;
   isPrivate: boolean;
+  author: string;
+  tags: string[];
+  description: string;
 }
 
 function getTitle(page: PageObjectResponse): string {
@@ -47,6 +50,31 @@ function getPrivate(page: PageObjectResponse): boolean {
   return false;
 }
 
+function getAuthor(page: PageObjectResponse): string {
+  const prop = page.properties['Author'];
+  if (prop.type === 'people' && prop.people.length > 0) {
+    const person = prop.people[0];
+    return 'name' in person ? (person.name ?? '') : '';
+  }
+  return '';
+}
+
+function getTags(page: PageObjectResponse): string[] {
+  const prop = page.properties['Tags'];
+  if (prop.type === 'multi_select') {
+    return prop.multi_select.map((t) => t.name);
+  }
+  return [];
+}
+
+function getDescription(page: PageObjectResponse): string {
+  const prop = page.properties['Description'];
+  if (prop.type === 'rich_text') {
+    return prop.rich_text.map((t) => t.plain_text).join('');
+  }
+  return '';
+}
+
 export async function getPublishedPosts(): Promise<PostMeta[]> {
   const response = await notion.databases.query({
     database_id: databaseId,
@@ -67,6 +95,9 @@ export async function getPublishedPosts(): Promise<PostMeta[]> {
       slug: getSlug(page),
       date: getDate(page),
       isPrivate: getPrivate(page),
+      author: getAuthor(page),
+      tags: getTags(page),
+      description: getDescription(page),
     }))
     .filter((p) => p.slug);
 }
@@ -92,6 +123,9 @@ export async function getPostBySlug(slug: string): Promise<PostMeta | null> {
     slug: getSlug(p),
     date: getDate(p),
     isPrivate: getPrivate(p),
+    author: getAuthor(p),
+    tags: getTags(p),
+    description: getDescription(p),
   };
 }
 
