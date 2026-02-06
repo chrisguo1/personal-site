@@ -1,22 +1,26 @@
-import { Link } from "gatsby";
-import PropTypes from "prop-types";
-import React from "react";
-import "./header.css";
+import Link from 'next/link';
+import ThemeToggle from './ThemeToggle';
 
-const Header = ({ siteTitle }) => (
-    <header class="pb-6">
-        <Link to={`/`}>
-            <div class="text-4xl">{siteTitle}</div>
+export default function Header() {
+  return (
+    <header className="flex items-center justify-between pb-12">
+      <Link
+        href="/"
+        className="text-xl font-bold no-underline hover:no-underline"
+        style={{ color: 'var(--color-text)' }}
+      >
+        Chris Guo
+      </Link>
+      <nav className="flex items-center gap-6">
+        <Link
+          href="/#writing"
+          className="text-sm no-underline hover:underline"
+          style={{ color: 'var(--color-text-muted)' }}
+        >
+          Writing
         </Link>
+        <ThemeToggle />
+      </nav>
     </header>
-);
-
-Header.propTypes = {
-    siteTitle: PropTypes.string,
-};
-
-Header.defaultProps = {
-    siteTitle: ``,
-};
-
-export default Header;
+  );
+}
