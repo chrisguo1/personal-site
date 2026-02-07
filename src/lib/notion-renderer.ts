@@ -56,14 +56,20 @@ async function renderBlock(block: BlockObjectResponse): Promise<string> {
     case 'paragraph':
       return `<p>${renderRichText(getRichText(b))}</p>`;
 
-    case 'heading_1':
-      return `<h1>${renderRichText(getRichText(b))}</h1>`;
+    case 'heading_1': {
+      const id = slugify(getRichText(b).map((t) => t.plain_text).join(''));
+      return `<h1 id="${escapeHtml(id)}">${renderRichText(getRichText(b))}</h1>`;
+    }
 
-    case 'heading_2':
-      return `<h2>${renderRichText(getRichText(b))}</h2>`;
+    case 'heading_2': {
+      const id = slugify(getRichText(b).map((t) => t.plain_text).join(''));
+      return `<h2 id="${escapeHtml(id)}">${renderRichText(getRichText(b))}</h2>`;
+    }
 
-    case 'heading_3':
-      return `<h3>${renderRichText(getRichText(b))}</h3>`;
+    case 'heading_3': {
+      const id = slugify(getRichText(b).map((t) => t.plain_text).join(''));
+      return `<h3 id="${escapeHtml(id)}">${renderRichText(getRichText(b))}</h3>`;
+    }
 
     case 'bulleted_list_item':
       return `<li>${renderRichText(getRichText(b))}${await renderChildren(b)}</li>`;
@@ -180,6 +186,56 @@ async function renderChildren(block: AnyBlock): Promise<string> {
   if (!block.has_children) return '';
   const children = await getChildBlocks(block.id);
   return await renderBlocks(children);
+}
+
+// ---- Heading / word-count helpers ----
+
+export interface TocHeading {
+  id: string;
+  text: string;
+  level: 1 | 2 | 3;
+}
+
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+function getPlainText(block: BlockObjectResponse): string {
+  const b = block as AnyBlock;
+  const rt = getRichText(b);
+  return rt.map((t) => t.plain_text).join('');
+}
+
+/** Extract headings from blocks for TOC generation. */
+export function extractHeadings(blocks: BlockObjectResponse[]): TocHeading[] {
+  const headings: TocHeading[] = [];
+  for (const block of blocks) {
+    if (block.type === 'heading_1' || block.type === 'heading_2' || block.type === 'heading_3') {
+      const level = Number(block.type.slice(-1)) as 1 | 2 | 3;
+      const text = getPlainText(block);
+      headings.push({ id: slugify(text), text, level });
+    }
+  }
+  return headings;
+}
+
+/** Count words across all text-bearing blocks. */
+export function countWords(blocks: BlockObjectResponse[]): number {
+  let total = 0;
+  for (const block of blocks) {
+    const b = block as AnyBlock;
+    const rt = getRichText(b);
+    if (rt.length) {
+      const text = rt.map((t) => t.plain_text).join('');
+      total += text.split(/\s+/).filter(Boolean).length;
+    }
+  }
+  return total;
 }
 
 // ---- Main export ----
