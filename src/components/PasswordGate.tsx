@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
 import DOMPurify from 'dompurify';
 
-export default function PasswordGate({ slug }: { slug: string }) {
+export default function PasswordGate({ slug, metadata }: { slug: string; metadata?: ReactNode }) {
   const [password, setPassword] = useState('');
   const [html, setHtml] = useState<string | null>(null);
   const [error, setError] = useState(false);
@@ -36,7 +36,12 @@ export default function PasswordGate({ slug }: { slug: string }) {
   }
 
   if (html) {
-    return <div dangerouslySetInnerHTML={{ __html: html }} />;
+    return (
+      <>
+        {metadata}
+        <div dangerouslySetInnerHTML={{ __html: html }} />
+      </>
+    );
   }
 
   return (

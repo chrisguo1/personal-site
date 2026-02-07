@@ -48,6 +48,36 @@ export default async function BlogPost({
   const post = await getPostBySlug(slug);
   if (!post) notFound();
 
+  const metadata = (
+    <>
+      <div className="flex flex-wrap items-center gap-x-3 text-sm" style={{ color: 'var(--color-text-muted)' }}>
+        <time dateTime={post.date}>{formatDate(post.date)}</time>
+        {post.author && (
+          <>
+            <span aria-hidden="true">&middot;</span>
+            <span>{post.author}</span>
+          </>
+        )}
+      </div>
+      {post.tags.length > 0 && (
+        <div className="flex flex-wrap gap-2 mt-3">
+          {post.tags.map((tag) => (
+            <span
+              key={tag}
+              className="text-xs px-2 py-0.5 rounded-full"
+              style={{
+                backgroundColor: 'var(--color-code-bg)',
+                color: 'var(--color-text-muted)',
+              }}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+    </>
+  );
+
   return (
     <article className="prose">
       <header className="mb-8">
@@ -61,35 +91,11 @@ export default async function BlogPost({
           </Link>
         </p>
         <h1 style={{ marginBottom: '0.25rem' }}>{post.title}</h1>
-        <div className="flex flex-wrap items-center gap-x-3 text-sm" style={{ color: 'var(--color-text-muted)' }}>
-          <time dateTime={post.date}>{formatDate(post.date)}</time>
-          {post.author && (
-            <>
-              <span aria-hidden="true">&middot;</span>
-              <span>{post.author}</span>
-            </>
-          )}
-        </div>
-        {post.tags.length > 0 && (
-          <div className="flex flex-wrap gap-2 mt-3">
-            {post.tags.map((tag) => (
-              <span
-                key={tag}
-                className="text-xs px-2 py-0.5 rounded-full"
-                style={{
-                  backgroundColor: 'var(--color-code-bg)',
-                  color: 'var(--color-text-muted)',
-                }}
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
+        {!post.isPrivate && metadata}
       </header>
 
       {post.isPrivate ? (
-        <PasswordGate slug={post.slug} />
+        <PasswordGate slug={post.slug} metadata={metadata} />
       ) : (
         <PostContent pageId={post.id} />
       )}
