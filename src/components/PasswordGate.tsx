@@ -3,7 +3,7 @@
 import { useState, type ReactNode } from 'react';
 import DOMPurify from 'dompurify';
 
-export default function PasswordGate({ slug, metadata }: { slug: string; metadata?: ReactNode }) {
+export default function PasswordGate({ slug, children }: { slug: string; children?: ReactNode }) {
   const [password, setPassword] = useState('');
   const [html, setHtml] = useState<string | null>(null);
   const [error, setError] = useState(false);
@@ -38,7 +38,7 @@ export default function PasswordGate({ slug, metadata }: { slug: string; metadat
   if (html) {
     return (
       <>
-        {metadata}
+        {children}
         <div dangerouslySetInnerHTML={{ __html: html }} />
       </>
     );
