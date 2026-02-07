@@ -19,6 +19,9 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = await getPostBySlug(slug);
   if (!post) return { title: 'Not Found' };
+  if (post.isPrivate) {
+    return { title: 'Private Post' };
+  }
   return {
     title: post.title,
     description: post.description || undefined,
@@ -47,6 +50,26 @@ export default async function BlogPost({
   const { slug } = await params;
   const post = await getPostBySlug(slug);
   if (!post) notFound();
+
+  if (post.isPrivate) {
+    return (
+      <article className="prose">
+        <header className="mb-8">
+          <p style={{ marginBottom: '0.5rem' }}>
+            <Link
+              href="/"
+              className="text-sm no-underline hover:underline"
+              style={{ color: 'var(--color-text-muted)' }}
+            >
+              &larr; Home
+            </Link>
+          </p>
+          <h1 style={{ marginBottom: '0.25rem' }}>Private Post</h1>
+        </header>
+        <PasswordGate slug={post.slug} />
+      </article>
+    );
+  }
 
   return (
     <article className="prose">
@@ -87,12 +110,7 @@ export default async function BlogPost({
           </div>
         )}
       </header>
-
-      {post.isPrivate ? (
-        <PasswordGate slug={post.slug} />
-      ) : (
-        <PostContent pageId={post.id} />
-      )}
+      <PostContent pageId={post.id} />
     </article>
   );
 }
