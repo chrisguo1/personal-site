@@ -6,7 +6,7 @@ export default function Header() {
     <header className="flex items-center justify-between pb-12">
       <Link
         href="/"
-        className="text-xl font-bold no-underline hover:no-underline"
+        className="text-2xl font-bold no-underline hover:no-underline"
         style={{ color: 'var(--color-text)' }}
       >
         Chris Guo
