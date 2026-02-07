@@ -193,7 +193,7 @@ async function renderChildren(block: AnyBlock): Promise<string> {
 export interface TocHeading {
   id: string;
   text: string;
-  level: 1 | 2 | 3;
+  level: 1 | 2;
 }
 
 function slugify(text: string): string {
@@ -211,12 +211,12 @@ function getPlainText(block: BlockObjectResponse): string {
   return rt.map((t) => t.plain_text).join('');
 }
 
-/** Extract headings from blocks for TOC generation. */
+/** Extract H1 and H2 headings from blocks for TOC generation. */
 export function extractHeadings(blocks: BlockObjectResponse[]): TocHeading[] {
   const headings: TocHeading[] = [];
   for (const block of blocks) {
-    if (block.type === 'heading_1' || block.type === 'heading_2' || block.type === 'heading_3') {
-      const level = Number(block.type.slice(-1)) as 1 | 2 | 3;
+    if (block.type === 'heading_1' || block.type === 'heading_2') {
+      const level = Number(block.type.slice(-1)) as 1 | 2;
       const text = getPlainText(block);
       headings.push({ id: slugify(text), text, level });
     }
