@@ -19,6 +19,9 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = await getPostBySlug(slug);
   if (!post) return { title: 'Not Found' };
+  if (post.isPrivate) {
+    return { title: 'Protected Post' };
+  }
   return {
     title: post.title,
     description: post.description || undefined,
@@ -48,50 +51,56 @@ export default async function BlogPost({
   const post = await getPostBySlug(slug);
   if (!post) notFound();
 
+  const header = (
+    <>
+      <h1 style={{ marginBottom: '0.25rem' }}>{post.title}</h1>
+      <div className="flex flex-wrap items-center gap-x-3 text-sm" style={{ color: 'var(--color-text-muted)' }}>
+        <time dateTime={post.date}>{formatDate(post.date)}</time>
+        {post.author && (
+          <>
+            <span aria-hidden="true">&middot;</span>
+            <span>{post.author}</span>
+          </>
+        )}
+      </div>
+      {post.tags.length > 0 && (
+        <div className="flex flex-wrap gap-2 mt-3">
+          {post.tags.map((tag) => (
+            <span
+              key={tag}
+              className="text-xs px-2 py-0.5 rounded-full"
+              style={{
+                backgroundColor: 'var(--color-code-bg)',
+                color: 'var(--color-text-muted)',
+              }}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+    </>
+  );
+
   return (
     <article className="prose">
-      <header className="mb-8">
-        <p style={{ marginBottom: '0.5rem' }}>
-          <Link
-            href="/"
-            className="text-sm no-underline hover:underline"
-            style={{ color: 'var(--color-text-muted)' }}
-          >
-            &larr; Home
-          </Link>
-        </p>
-        <h1 style={{ marginBottom: '0.25rem' }}>{post.title}</h1>
-        <div className="flex flex-wrap items-center gap-x-3 text-sm" style={{ color: 'var(--color-text-muted)' }}>
-          <time dateTime={post.date}>{formatDate(post.date)}</time>
-          {post.author && (
-            <>
-              <span aria-hidden="true">&middot;</span>
-              <span>{post.author}</span>
-            </>
-          )}
-        </div>
-        {post.tags.length > 0 && (
-          <div className="flex flex-wrap gap-2 mt-3">
-            {post.tags.map((tag) => (
-              <span
-                key={tag}
-                className="text-xs px-2 py-0.5 rounded-full"
-                style={{
-                  backgroundColor: 'var(--color-code-bg)',
-                  color: 'var(--color-text-muted)',
-                }}
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
-      </header>
+      <p style={{ marginBottom: '0.5rem' }}>
+        <Link
+          href="/"
+          className="text-sm no-underline hover:underline"
+          style={{ color: 'var(--color-text-muted)' }}
+        >
+          &larr; Home
+        </Link>
+      </p>
 
       {post.isPrivate ? (
-        <PasswordGate slug={post.slug} />
+        <PasswordGate slug={post.slug}>{header}</PasswordGate>
       ) : (
-        <PostContent pageId={post.id} />
+        <>
+          <header className="mb-8">{header}</header>
+          <PostContent pageId={post.id} />
+        </>
       )}
     </article>
   );
