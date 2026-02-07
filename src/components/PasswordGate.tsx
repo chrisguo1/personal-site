@@ -38,7 +38,7 @@ export default function PasswordGate({ slug, children }: { slug: string; childre
   if (html) {
     return (
       <>
-        {children}
+        <header className="mb-8">{children}</header>
         <div dangerouslySetInnerHTML={{ __html: html }} />
       </>
     );
