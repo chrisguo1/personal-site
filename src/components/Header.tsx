@@ -13,11 +13,18 @@ export default function Header() {
       </Link>
       <nav aria-label="Main navigation" className="flex items-center gap-6">
         <Link
-          href="/#writing"
+          href="/writing"
           className="text-sm no-underline hover:underline"
           style={{ color: 'var(--color-text-muted)' }}
         >
           Writing
+        </Link>
+        <Link
+          href="/the-diagram"
+          className="text-sm no-underline hover:underline"
+          style={{ color: 'var(--color-text-muted)' }}
+        >
+          The Diagram
         </Link>
         <ThemeToggle />
       </nav>
