@@ -1,22 +1,4 @@
-import Link from 'next/link';
-import { getPublishedPosts } from '@/lib/notion';
-
-export const revalidate = 60;
-
-function formatDate(dateStr: string): string {
-  if (!dateStr) return '';
-  const d = new Date(dateStr + 'T00:00:00');
-  return d.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
-}
-
-export default async function HomePage() {
-  const allPosts = await getPublishedPosts();
-  const posts = allPosts.filter((p) => !p.isPrivate);
-
+export default function HomePage() {
   return (
     <div className="prose">
       <section className="mb-12">
@@ -31,7 +13,7 @@ export default async function HomePage() {
         </p>
       </section>
 
-      <section className="mb-12">
+      <section>
         <h2 id="experience" style={{ marginTop: 0 }}>
           Experience
         </h2>
@@ -43,33 +25,6 @@ export default async function HomePage() {
           <li>Data Science &mdash; Numpy, Pandas</li>
           <li>Dashboarding &mdash; Plotly Dash, Sigma Computing</li>
         </ul>
-      </section>
-
-      <section>
-        <h2 id="writing" style={{ marginTop: 0 }}>
-          Writing
-        </h2>
-        {posts.length === 0 ? (
-          <p style={{ color: 'var(--color-text-muted)' }}>No posts yet.</p>
-        ) : (
-          <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
-            {posts.map((post) => (
-              <li
-                key={post.slug}
-                className="flex justify-between items-baseline"
-                style={{ marginBottom: '0.75rem' }}
-              >
-                <Link href={`/blog/${post.slug}`}>{post.title}</Link>
-                <span
-                  className="text-sm ml-4 shrink-0"
-                  style={{ color: 'var(--color-text-muted)' }}
-                >
-                  {formatDate(post.date)}
-                </span>
-              </li>
-            ))}
-          </ul>
-        )}
       </section>
     </div>
   );

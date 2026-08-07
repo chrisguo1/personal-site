@@ -1,12 +1,13 @@
 import type { Metadata } from 'next';
-import { Lato } from 'next/font/google';
+import { Geist } from 'next/font/google';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import '@/styles/globals.css';
 
-const lato = Lato({
+// Geist for both body and headings — see globals.css.
+const geist = Geist({
   subsets: ['latin'],
-  weight: ['300', '400', '700', '900'],
+  variable: '--font-body',
   display: 'swap',
 });
 
@@ -32,7 +33,7 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className={`${lato.className} min-h-screen`}>
+      <body className={`${geist.variable} min-h-screen`}>
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:rounded">
           Skip to main content
         </a>
