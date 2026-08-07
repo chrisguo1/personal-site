@@ -25,16 +25,16 @@ export default function TheDiagramPage() {
           enough at explaining how each individual piece connected to each
           other. This is my attempt to do so.
         </p>
-        <p>
-          First, I try to understand the US economic and societal state via a
-          bunch of time series graphs.
-        </p>
       </section>
 
       <section>
         <h2 id="reports" style={{ marginTop: 0 }}>
-          Reports
+          Macro Reports
         </h2>
+        <p>
+          First, I try to understand the US economic and societal state via a
+          bunch of time series graphs.
+        </p>
         {reports.length === 0 ? (
           <p style={{ color: 'var(--color-text-muted)' }}>No reports yet.</p>
         ) : (
@@ -51,18 +51,18 @@ export default function TheDiagramPage() {
                     {formatDate(report.date)}
                   </span>
                 </div>
-                {report.commentary && (
+                {report.commentary?.map((paragraph, i) => (
                   <p
-                    className="text-sm"
+                    key={i}
                     style={{
                       color: 'var(--color-text)',
-                      marginTop: '0.5rem',
-                      marginBottom: 0,
+                      marginTop: i === 0 ? '0.75rem' : 0,
+                      marginBottom: '1rem',
                     }}
                   >
-                    {report.commentary}
+                    {paragraph}
                   </p>
-                )}
+                ))}
               </li>
             ))}
           </ul>
